@@ -1,4 +1,4 @@
-baseURL: "http://paperitivo.netlify.app/"
+baseURL: "https://paperitivo.netlify.app/"
 title: Paperitivo
 paginate: 8
 theme: hugo-PaperMod
