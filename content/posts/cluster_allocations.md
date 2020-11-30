@@ -39,15 +39,14 @@ Con $N$ grande, calcolare le distribuzioni full conditional può essere oneroso 
 
 L'esplorazione di tutte le mode non è garantita
 <center>
-
-![](C:\Users\stivi\Dropbox\DOTTORATO\paperinik\figure\label_switching.png){width=300px height=200px}
+![](/assets/images/cluster_allocations/label_switching.png){width=300px height=200px}
 </center>
 
 
  In high-dimensional settings la catena si incastra e non cambia le allocazioni
 
 <center>
-![](C:\Users\stivi\Dropbox\DOTTORATO\paperinik\figure\allocations.png){width=300px height=200px}
+![](/assets/images/cluster_allocations/allocations.png){width=300px height=200px}
 </center>
 
 
@@ -104,7 +103,7 @@ Quando la dimensione di una singola osservazione $y_n$ tende a crescere diventa 
 
 ## Fixed G: M1 & M3
 <center>
-![](C:\Users\stivi\Dropbox\DOTTORATO\paperinik\figure\moves1_3.png){width=400 height=225}
+![](/assets/images/cluster_allocations/moves1_3.png){width=400 height=225}
 </center>
 
 1. Seleziona casualmente $j_1$ e $j_2$
@@ -114,7 +113,7 @@ Nelle due moves cambia come si sceglie $p$ (M1: $p \sim \beta(a, a)$, M2: basata
 
 ## Fixed G: M2 & M4
 <center>
-![](C:\Users\stivi\Dropbox\DOTTORATO\paperinik\figure\moves3.png){width=400 height=225}
+![](/assets/images/cluster_allocations/moves3.png){width=400 height=225}
 </center>
 
 1. Seleziona casualmente $j_1$ e $j_2$
@@ -125,7 +124,7 @@ Tra le moves che non cambiano il numero di gruppi viene considerata anche quella
 
 ## Varying G (caso $G^\star = G^{(it-1)}+1$)
 <center>
-![](C:\Users\stivi\Dropbox\DOTTORATO\paperinik\figure\moves_var.png){width=400 height=225}
+![](/assets/images/cluster_allocations/moves_var.png){width=400 height=225}
 </center>
 
 1. Seleziona casualmente $j_1 \in \{1, \ldots,  G^{(it-1)}\}$
@@ -136,7 +135,7 @@ $a$ è un parametro critico per il buon funzionamento dell'algoritmo
 
 ## Una nuova move (fixed G)
 <center>
-![](C:\Users\stivi\Dropbox\DOTTORATO\paperinik\figure\proposal.png){width=400 height=225}
+![](/assets/images/cluster_allocations/proposal.png){width=400 height=225}
 </center>
 
 Dato $\mathbf{S}^{(it-1)}$, ogni riga di $\mathbf{S}^\star$ viene generata indipendentemente dalle altre in accordo con
