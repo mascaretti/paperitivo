@@ -74,11 +74,11 @@ $ git push origin master
 This will ensure that the online version of your fork will be updated with your last work (and also with the work done in the common repository).
 Then, open the github page of the common repository (the one available [here](https://github.com/mascaretti/paperitivo)) and navigate to the [Pull Request](https://github.com/mascaretti/paperitivo/pulls) tab. There, you can push the "New pull request" button.
 
-![Creating a new pull request: the compare page](assets/images/posting-guide/compare-page.png)
+![Creating a new pull request: the compare page](/assets/images/posting-guide/compare-page.png)
 
 A "Compare Change" page will open, from where you can check what you are trying to accomplish. Press the "compare across forks" link and select your fork. 
 
-![Creating a new pull request: select your fork](assets/images/posting-guide/compare-forks.png)
+![Creating a new pull request: select your fork](/assets/images/posting-guide/compare-forks.png)
 
 Review the changes to avoid any error and finally press "Create pull request" and finally complete the form adding a brief explanation (if needed).
 
