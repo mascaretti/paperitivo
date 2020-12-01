@@ -8,6 +8,7 @@ categories: ["guide"]
 series: ["Guide"]
 ShowToc: true
 TocOpen: true
+math: true
 weight: 2
 ---
 
@@ -43,14 +44,23 @@ With this, your setup is complete.
 When you want to add a new post, navigate to your local repository and create a new file in `content/posts`.
 You can copy and rename one of the already created posts, for instance this one, in order to follow the structure. Don't delete any of the already existing files.
 
-If you need to add some images, you can place those in the folder `assets/images/`, possibly creating a subfolder for your post in order to keep stuff organized.
-
 When you are done writing, you can open a terminal in the folder of the repository (or a git bash window if you are on windows) and issue the following commands:
 ```
 $ git add content/posts/<yourpost>.md
 $ git commit -m "a short message that identifies your commit"
 ```
 As a message for the commit, you can write some info on the post, for instance "added post on the paperinik in XX/XX/2020" or something similar. You can later modify your file and commit it again following the same procedure.
+
+If you need to add some images, you can place those in the folder `assets/images/`, possibly creating a subfolder for your post in order to keep stuff organized. You then need to commit also the images: it should be enough to replace the previous `git add` with
+```
+$ git add content/posts/<yourpost>.md assets/images/<yourimagefolder>/
+```
+and committing using the same command as before.
+
+To write math, you can use most of standard LaTeX stuff: to introduct a display equation you should leave a blank line before and after the `$$` symbol.
+
+To add an inline equation, use `$` and `$` as delimiters, as in $x^2$
+
 
 ## Syncing the fork with upstream
 When you are done and you want to publish your post, first you should sync your local copy of the repository with the upstream one, in order to have the latest version of the website.
@@ -74,11 +84,11 @@ $ git push origin master
 This will ensure that the online version of your fork will be updated with your last work (and also with the work done in the common repository).
 Then, open the github page of the common repository (the one available [here](https://github.com/mascaretti/paperitivo)) and navigate to the [Pull Request](https://github.com/mascaretti/paperitivo/pulls) tab. There, you can push the "New pull request" button.
 
-![Creating a new pull request: the compare page](/assets/images/posting-guide/compare-page.png)
+![Creating a new pull request: the compare page](/images/posting-guide/compare-page.png)
 
 A "Compare Change" page will open, from where you can check what you are trying to accomplish. Press the "compare across forks" link and select your fork. 
 
-![Creating a new pull request: select your fork](/assets/images/posting-guide/compare-forks.png)
+![Creating a new pull request: select your fork](/images/posting-guide/compare-forks.png)
 
 Review the changes to avoid any error and finally press "Create pull request" and finally complete the form adding a brief explanation (if needed).
 

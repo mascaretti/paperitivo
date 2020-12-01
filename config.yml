@@ -27,7 +27,7 @@ languages:
   l2:
     languageName: "Italian"
     weight: 2
-    title: Paperitivo in Italiano
+    title: Paperinik in Italiano
     profileMode:
       enabled: true
       title: PaperMod
@@ -45,10 +45,10 @@ languages:
 
 params:
   env: production
-  description: "Paper + Aperitivo"
+  description: "An informal meeting of young statisticians from the Department of Statistics at the University of Padova"
   author: Theme PaperMod
-  author: ["Pippo", "Pluto"] # multiple authors
-  ShowReadingTime: true
+  author: ["Andrea Mascaretti"] # multiple authors
+  ShowReadingTime: false
   defaultTheme: auto
   ShowShareButtons: true
   displayFullLangName: true
@@ -70,11 +70,11 @@ params:
         url: tags
 
   homeInfoParams:
-    Title: "Hi there \U0001F44B"
+    Title: "Paperinik"
     Content: >
-      Welcome to demo of Paperitivo.
+      Welcome to a collection of Paperinik "proceedings".
 
-      - **Paperitivo** is an informal meeting of statisticians.
+      - **Paperinik** is an informal meeting of young statisticians from the Department of Statistics at the University of Padova.
 
   socialIcons:
     - name: twitter
