@@ -9,18 +9,18 @@ subtitle: Mixture models e cluster allocations
 event: Paperinik
 ---
 
-
 ## Mixture models
 Si consideri la seguente specificazione gerarchica di un modello mistura
-$$
-Y_{n} \mid S_{n}=g, \theta_{g} \sim
-f\left(\cdot \mid \theta_{g} \right), \quad n =1,\ldots, N \\ 
-S_{n} \mid \pi_G \sim \text{Mult}_G\left(1, \pi_G \right), \quad 
-\pi_G   \sim \text{Dir}_G(\pi_0),\\
-\theta_g  \sim p(\cdot \mid \theta_{0,g}), \quad g=1,\ldots,G, \\
-G \sim p(\cdot \mid G_0),
-$$
-per il quale è di interesse svolgere una qualche analisi a posteriori,  una volta osservato un campione $N$ dimensionale $y_{1:N}$ 
+$$ Y_{n} \mid S_{n}=g, \theta_{g} \sim f\left(\cdot \mid \theta_{g} \right), \quad n =1,\ldots, N $$
+
+$$ S_{n} \mid \pi_G \sim \text{Mult}_G\left(1, \pi_G \right), \quad 
+\pi_G   \sim \text{Dir}_G(\pi_0),$$
+
+$$ \theta_g  \sim p(\cdot \mid \theta_{0,g}), \quad g=1,\ldots,G, $$
+
+$$ G \sim p(\cdot \mid G_0),$$
+
+per il quale è di interesse svolgere una qualche analisi a posteriori,  una volta osservato un campione \(N\) dimensionale \(y_{1:N}\)
 
 ## MCMC \& Cluster Allocations
 Un approccio elementare al problema prevede l'utilizzo di algoritmi MCMC (Gibbs Sampler, MH within Gibbs, ...).
@@ -28,7 +28,8 @@ Un approccio elementare al problema prevede l'utilizzo di algoritmi MCMC (Gibbs 
 Generalmente, questi algoritmi simulano iterativamente dalle full conditional dei parametri
 
 Le allocazioni vengono aggiornate una alla volta condizionatamente al resto
-$$S_n \mid S_{1:(n-1), (n+1):N}, \theta_{1:G},\pi, {y}_{1:N}$$ in accordo con la loro distribuzione full conditional
+$$S_n \mid S_{1:(n-1), (n+1):N}, \theta_{1:G},\pi, {y}_{1:N}$$ 
+in accordo con la loro distribuzione full conditional
 
 Con $N$ grande, calcolare le distribuzioni full conditional può essere oneroso e portare a catene mal mixate
  
@@ -39,71 +40,72 @@ Con $N$ grande, calcolare le distribuzioni full conditional può essere oneroso 
 
 L'esplorazione di tutte le mode non è garantita
 <center>
-![](/assets/images/cluster_allocations/label_switching.png){width=300px height=200px}
+![](/images/cluster-allocations/label_switching.png){width=300px height=200px}
 </center>
 
 
  In high-dimensional settings la catena si incastra e non cambia le allocazioni
 
 <center>
-![](/assets/images/cluster_allocations/allocations.png){width=300px height=200px}
+![](/images/cluster-allocations/allocations.png){width=300px height=200px}
 </center>
 
 
 
 ## Risolviamoli: meglio insieme!
 
-Possiamo considerare le allocazioni $$S_{1:N} = (S_1, S_2, \ldots, S_N) \in \{1, 2, \ldots, G\}^N$$
+Possiamo considerare le allocazioni 
+$$S_{1:N} = (S_1, S_2, \ldots, S_N) \in \{1, 2, \ldots, G\}^N$$
+
 come un unico parametro o, alternativamente, la matrice di selezione
+
 $$\mathbf{S} = \begin{bmatrix}\mathbb{I}(S_1 =1) & \mathbb{I}(S_1 =2) &  \cdots & \mathbb{I}(S_1 =G)\\
 \mathbb{I}(S_2 =1) & \mathbb{I}(S_2 =2) &  \cdots & \mathbb{I}(S_2 =G)\\ \vdots & \vdots & \vdots  & \vdots \\
 \mathbb{I}(S_N =1) & \mathbb{I}(S_N =2) &  \cdots & \mathbb{I}(S_N =G) \end{bmatrix} \in \mathcal{S}^{N,G}$$ 
+
 e considerare in one-step le loro distribuzioni full conditional (eventualmente marginalizzando una parte di parametri)
 
 
 ## Qualche riferimento
--  Nobile and Fearnside (2007) <br>
-Bayesian finite mixtures with an unknown number
-of components: the allocation sampler 
-(*Stat Comput*)
+-  Nobile and Fearnside (2007) 
+	Bayesian finite mixtures with an unknown number of components: the allocation sampler (*Stat Comput*)
 
-- Fong, Wakefield and  Rice (2012) <br>
-An efficient Markov chain Monte Carlo method for mixture
-models by neighborhood pruning  (*JCGS*)
+- Fong, Wakefield and  Rice (2012) 
+	An efficient Markov chain Monte Carlo method for mixture models by neighborhood pruning  (*JCGS*)
 
-- Sch&auml;fer and Chopin  (2013) <br> 
-Sequential Monte Carlo on Large
-Binary Sampling Spaces 
-(*Stat Comput*)
+- Sch&auml;fer and Chopin  (2013) 
+	Sequential Monte Carlo on Large Binary Sampling Spaces (*Stat Comput*)
 
-- Titsias and Yau (2017) <br>
-The Hamming ball sampler (*JASA*)
+- Titsias and Yau (2017) 
+	The Hamming ball sampler (*JASA*)
 
-- Zanella (2020) <br> Informed proposals for local MCMC in discrete spaces
-(*JASA*)
+- Zanella (2020) 
+	Informed proposals for local MCMC in discrete spaces (*JASA*)
 
 
 ## The allocation sampler
 
 L'algoritmo considera le allocazioni e il numero di gruppi congiuntamente, dopo aver integrato via i parametri del modello (quando possibile)
 
-&Egrave; composto da due tipi di *moves* (stocastiche): <br>
-- Quelle che non cambiano il numero di gruppi $G$<br>
+&Egrave; composto da due tipi di *moves* (stocastiche): 
+
+- Quelle che non cambiano il numero di gruppi $G$
 - Quelle che cambiano il numero di gruppi
-<br>
 
-**Pro** <br>
+
+**Pro** 
+
 - Rimane lo stesso indipendentemente dal numero di osservazioni o dalla famiglie che compongono la mistura
-<br>
-- Non richiede l'invenzione di *buone* jumping moves tipiche delle tecniche di reversible jump <br>
+- Non richiede l'invenzione di *buone* jumping moves tipiche delle tecniche di reversible jump 
 
-**Cons (opinione basata su prove empiriche)**<br>
-Quando la dimensione di una singola osservazione $y_n$ tende a crescere diventa difficile fare *tuning*
+**Cons (opinione basata su prove empiriche)**
+
+- Quando la dimensione di una singola osservazione $y_n$ tende a crescere diventa difficile fare *tuning*
 
 
 ## Fixed G: M1 & M3
 <center>
-![](/assets/images/cluster_allocations/moves1_3.png){width=400 height=225}
+![](/images/cluster-allocations/moves1_3.png){width=400 height=225}
 </center>
 
 1. Seleziona casualmente $j_1$ e $j_2$
@@ -113,7 +115,7 @@ Nelle due moves cambia come si sceglie $p$ (M1: $p \sim \beta(a, a)$, M2: basata
 
 ## Fixed G: M2 & M4
 <center>
-![](/assets/images/cluster_allocations/moves3.png){width=400 height=225}
+![](/images/cluster-allocations/moves3.png){width=400 height=225}
 </center>
 
 1. Seleziona casualmente $j_1$ e $j_2$
@@ -124,7 +126,7 @@ Tra le moves che non cambiano il numero di gruppi viene considerata anche quella
 
 ## Varying G (caso $G^\star = G^{(it-1)}+1$)
 <center>
-![](/assets/images/cluster_allocations/moves_var.png){width=400 height=225}
+![](/images/cluster-allocations/moves_var.png){width=400 height=225}
 </center>
 
 1. Seleziona casualmente $j_1 \in \{1, \ldots,  G^{(it-1)}\}$
@@ -135,10 +137,11 @@ $a$ è un parametro critico per il buon funzionamento dell'algoritmo
 
 ## Una nuova move (fixed G)
 <center>
-![](/assets/images/cluster_allocations/proposal.png){width=400 height=225}
+![](/images/cluster-allocations/proposal.png){width=400 height=225}
 </center>
 
 Dato $\mathbf{S}^{(it-1)}$, ogni riga di $\mathbf{S}^\star$ viene generata indipendentemente dalle altre in accordo con
+
 $$
 \operatorname{Pr}\left(S_{n}^{\star}=j \mid S_{n}^{(it-1)}\right)=\frac{\exp \left(\beta \mathbb{I}\left(S_{n}^{(it-1)}=j\right)\right)}{\sum_{g=1}^{G} \exp \left(\beta \mathbb{I}\left(S_{n}^{(it-1)}=g\right)\right)}
 $$
@@ -156,11 +159,18 @@ Richiede la definizione di una palla centrata in  $\mathbf{S}$ e di raggio $m$ (
 
 ## Costruzione
 Viene considerata la seguente fattorizzazione della distribuzione congiunta (aumentata) 
-$$ p(y_{1:N}, \theta, \mathbf{S}, \mathbf{U}) = p(\mathbf{y}_{1:N}, \theta, \mathbf{S}) p(\mathbf{U} \mid  \mathbf{S})$$ dove
-$$ p(\mathbf{U} \mid \mathbf{S}) = \dfrac{1}{Z_m} \mathbb{I}(\mathbf{U} \in \mathcal{H}_m(\mathbf{S}))$$ è una distribuzione uniforme su $\mathcal{H}_m(\mathbf{S})$,
-$$
-\mathcal{H}_{m}(\mathbf{X})=\left\{\mathbf{U}: d\left(\mathbf{u}_{n}, \mathbf{x}_{n}\right) \leq m, n=1, \ldots, N\right\}
-$$ è la *Hamming ball* di raggio $m$ e $d\left(\mathbf{u}_{n}, \mathbf{s}_{n}\right)$ è la distanza di Hamming tra i blocchi $\mathbf{u}_n$ e $\mathbf{s}_n$ di $\mathbf{U}$ e $\mathbf{S}$, rispettivamente 
+
+$$ p(y_{1:N}, \theta, \mathbf{S}, \mathbf{U}) = p(\mathbf{y}_{1:N}, \theta, \mathbf{S}) p(\mathbf{U} \mid  \mathbf{S})$$ 
+
+dove
+
+$$ p(\mathbf{U} \mid \mathbf{S}) = \dfrac{1}{Z_m} \mathbb{I}(\mathbf{U} \in \mathcal{H}_m(\mathbf{S}))$$ 
+
+è una distribuzione uniforme su $\mathcal{H}_m(\mathbf{S})$,
+
+$$\mathcal{H}_{m}(\mathbf{X})=\left\lbrace\mathbf{U}: d\left(\mathbf{u}_{n}, \mathbf{x}_{n}\right) \leq m, n=1, \ldots, N\right\rbrace $$ 
+
+è la *Hamming ball* di raggio $m$ e $d\left(\mathbf{u}_{n}, \mathbf{s}_{n}\right)$ è la distanza di Hamming tra i blocchi $\mathbf{u}_n$ e $\mathbf{s}_n$ di $\mathbf{U}$ e $\mathbf{S}$, rispettivamente 
 
 ## Gibbs sampler 
 
@@ -202,10 +212,8 @@ Gli algoritmi che ne risultano sono semplici da implementare e più efficienti s
 
 **Articoli correlati**
 
-- Jain and Neal (2004) <br>
-A Split-Merge Markov Chain Monte Carlo Procedure for the Dirichlet Process Mixture
-Model (*JCGS*)
+- Jain and Neal (2004) 
+	A Split-Merge Markov Chain Monte Carlo Procedure for the Dirichlet Process Mixture Model (*JCGS*)
 
 - Ni, M&uuml;ler, Diesendruck, Williamson, Zhu and Ji (2020)
-<br>
-Scalable Bayesian Nonparametric Clustering and Classification (*JCGS*)
+	Scalable Bayesian Nonparametric Clustering and Classification (*JCGS*)
