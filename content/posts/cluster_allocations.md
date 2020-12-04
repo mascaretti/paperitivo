@@ -206,6 +206,6 @@ Gli algoritmi che ne risultano sono semplici da implementare e più efficienti s
 A Split-Merge Markov Chain Monte Carlo Procedure for the Dirichlet Process Mixture
 Model (*JCGS*)
 
-- Ni, M&uuml;ler, Diesendruck, Williamson, Zhu and Ji (2020)
+- Ni, M&uuml;ller, Diesendruck, Williamson, Zhu and Ji (2020)
 <br>
 Scalable Bayesian Nonparametric Clustering and Classification (*JCGS*)
