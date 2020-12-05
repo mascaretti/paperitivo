@@ -11,7 +11,7 @@ math: true
 weight: 2
 ---
 
-_Brief guide to add blog post to Paperinik's blog_
+_Short tutorial on how to create blog posts for paperinik._
 
 
 The website is hosted in a [Github repository](https://github.com/mascaretti/paperitivo). To allow contribution from everyone, we will use the standard git collaborative framework based on forks and pull requests.
@@ -31,9 +31,9 @@ When the cloning operation is done, move in the folder with the repository and c
 ```
 $ git remote add upstream https://github.com/mascaretti/paperitivo.git
 $ git remote -v
-> origin 		https://github.com/<yourname>/paperitivo.git (fetch)
-> origin		https://github.com/<yourname>/paperitivo.git (push)
-> upstream	https://github.com/mascaretti/paperitivo.git (fetch)
+> origin 	https://github.com/<yourname>/paperitivo.git (fetch)
+> origin	https://github.com/<yourname>/paperitivo.git (push)
+> upstream  https://github.com/mascaretti/paperitivo.git (fetch)
 > upstream	https://github.com/mascaretti/paperitivo.git (push)
 ```
 
@@ -58,9 +58,9 @@ and committing using the same command as before.
 
 To write math, you can use most of standard LaTeX stuff: to introduct a display equation you should leave a blank line before and after it, while using the `$$` symbol as a delimiter:
 
-$$ x^2 $$
+$$x^2$$
 
-To add an inline equation, use `\\(` and `\\)` as delimiters, as in \\(x^2\\).
+To add an inline equation, use `$` and `$` as delimiters, as in $x^2$.
 
 
 ## Syncing the fork with upstream
