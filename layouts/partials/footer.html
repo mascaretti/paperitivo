@@ -1,4 +1,8 @@
 <footer class="footer">
+    {{ if or .Params.math .Site.Params.math }}
+        {{ partial "math.html" . }}
+      {{ end }}
+
     {{- if .Site.Copyright }}
     <span>{{ .Site.Copyright | markdownify }}</span>
     {{- else }}
@@ -65,5 +69,5 @@
     })
 
 </script>
-{{ if .Params.katex}}{{ partial "katex.html" . }}{{ end }}
+
 {{- end }}
