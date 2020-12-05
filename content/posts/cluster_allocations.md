@@ -1,13 +1,14 @@
 ---
 title: "Ladies and gentlemen... On your marks!"
-author: "Mattia Stival"
-date: "30/11/2020"
-output:
-  ioslides_presentation: default
-  slidy_presentation: default
 subtitle: Mixture models e cluster allocations
-event: Paperinik
+author: "Mattia Stival"
+date: "2020-11-30"
+tags: ["Mixture Models", "Cluster Allocations"]
+showtoc: true
+katex: true
+weight: 2
 ---
+
 
 ## Mixture models
 Si consideri la seguente specificazione gerarchica di un modello mistura
@@ -20,9 +21,9 @@ $$ \theta_g  \sim p(\cdot \mid \theta_{0,g}), \quad g=1,\ldots,G, $$
 
 $$ G \sim p(\cdot \mid G_0),$$
 
-per il quale è di interesse svolgere una qualche analisi a posteriori,  una volta osservato un campione \(N\) dimensionale \(y_{1:N}\)
+per il quale è di interesse svolgere una qualche analisi a posteriori,  una volta osservato un campione \\(N\\) dimensionale \\(y_{1:N}\\)
 
-## MCMC \& Cluster Allocations
+## MCMC & Cluster Allocations
 Un approccio elementare al problema prevede l'utilizzo di algoritmi MCMC (Gibbs Sampler, MH within Gibbs, ...).
 
 Generalmente, questi algoritmi simulano iterativamente dalle full conditional dei parametri
@@ -31,7 +32,7 @@ Le allocazioni vengono aggiornate una alla volta condizionatamente al resto
 $$S_n \mid S_{1:(n-1), (n+1):N}, \theta_{1:G},\pi, {y}_{1:N}$$ 
 in accordo con la loro distribuzione full conditional
 
-Con $N$ grande, calcolare le distribuzioni full conditional può essere oneroso e portare a catene mal mixate
+Con \\(N\\) grande, calcolare le distribuzioni full conditional può essere oneroso e portare a catene mal mixate
  
 <span style="color: black;">**Inoltre...**</span>
 
@@ -39,17 +40,12 @@ Con $N$ grande, calcolare le distribuzioni full conditional può essere oneroso 
 
 
 L'esplorazione di tutte le mode non è garantita
-<center>
-![](/images/cluster-allocations/label_switching.png){width=300px height=200px}
-</center>
 
+![L'esplorazione di tutte le mode non è garantita](/images/cluster-allocations/label_switching.png)
 
- In high-dimensional settings la catena si incastra e non cambia le allocazioni
-
-<center>
-![](/images/cluster-allocations/allocations.png){width=300px height=200px}
-</center>
-
+In high-dimensional settings la catena si incastra e non cambia le allocazioni
+ 
+ ![In high-dimensional settings la catena si incastra e non cambia le allocazioni](/images/cluster-allocations/allocations.png)
 
 
 ## Risolviamoli: meglio insieme!
@@ -89,7 +85,7 @@ L'algoritmo considera le allocazioni e il numero di gruppi congiuntamente, dopo 
 
 &Egrave; composto da due tipi di *moves* (stocastiche): 
 
-- Quelle che non cambiano il numero di gruppi $G$
+- Quelle che non cambiano il numero di gruppi \\(G\\)
 - Quelle che cambiano il numero di gruppi
 
 
@@ -100,47 +96,38 @@ L'algoritmo considera le allocazioni e il numero di gruppi congiuntamente, dopo 
 
 **Cons (opinione basata su prove empiriche)**
 
-- Quando la dimensione di una singola osservazione $y_n$ tende a crescere diventa difficile fare *tuning*
+- Quando la dimensione di una singola osservazione \\(y_n\\) tende a crescere diventa difficile fare *tuning*
 
 
 ## Fixed G: M1 & M3
-<center>
-![](/images/cluster-allocations/moves1_3.png){width=400 height=225}
-</center>
+![Moves M1 & M3](/images/cluster-allocations/moves1_3.png)
 
-1. Seleziona casualmente $j_1$ e $j_2$
-2. Rialloca gli elementi nei gruppi $j_1$ e $j_2$ in $j_1$ con probabilità $p$ e in $j_2$ con probabilità $1-p$
+1. Seleziona casualmente \\(j_1\\) e \\(j_2\\)
+2. Rialloca gli elementi nei gruppi \\(j_1\\) e \\(j_2\\) in \\(j_1\\) con probabilità \\(p\\) e in \\(j_2\\) con probabilità \\(1-p\\)
 
-Nelle due moves cambia come si sceglie $p$ (M1: $p \sim \beta(a, a)$, M2: basata sulla likelihood)
+Nelle due moves cambia come si sceglie \\(p\\) (M1: \\(p \sim \beta(a, a)\\), M3: basata sulla likelihood)
 
 ## Fixed G: M2 & M4
-<center>
-![](/images/cluster-allocations/moves3.png){width=400 height=225}
-</center>
+![Moves M2 & M4](/images/cluster-allocations/moves3.png)
 
-1. Seleziona casualmente $j_1$ e $j_2$
-2. Seleziona casualmente $m \in \{1,\ldots, n_{j1}\}$
-3. Selezione casualmente $m$ elementi di $j_1$ e allocali in $j_2$
+1. Seleziona casualmente \\(j_1\\) e \\(j_2\\)
+2. Seleziona casualmente \\(m \in \{1,\ldots, n_{j1}\}\\)
+3. Selezione casualmente \\(m\\) elementi di \\(j_1\\) e allocali in \\(j_2\\)
 
 Tra le moves che non cambiano il numero di gruppi viene considerata anche quella dove vengono casualmente cambiate le label dei gruppi
 
-## Varying G (caso $G^\star = G^{(it-1)}+1$)
-<center>
-![](/images/cluster-allocations/moves_var.png){width=400 height=225}
-</center>
+## Varying G (caso \\(G^\star = G^{(it-1)}+1\\))
+![Varying G](/images/cluster-allocations/moves_var.png){width=400 height=225}
 
-1. Seleziona casualmente $j_1 \in \{1, \ldots,  G^{(it-1)}\}$
-2. Alloca gli elementi di $j_1$ in $j_2 = G^\star$ con probabilità $p_e \sim \beta(a, a)$
+1. Seleziona casualmente \\(j_1 \in \{1, \ldots,  G^{(it-1)}\}\\)
+2. Alloca gli elementi di \\(j_1\\) in \\(j_2 = G^\star\\) con probabilità \\(p_e \sim \beta(a, a)\\)
 
-$a$ è un parametro critico per il buon funzionamento dell'algoritmo
-
+\\(a\\) è un parametro critico per il buon funzionamento dell'algoritmo
 
 ## Una nuova move (fixed G)
-<center>
-![](/images/cluster-allocations/proposal.png){width=400 height=225}
-</center>
+![Proposed move](/images/cluster-allocations/proposal.png){width=400 height=225}
 
-Dato $\mathbf{S}^{(it-1)}$, ogni riga di $\mathbf{S}^\star$ viene generata indipendentemente dalle altre in accordo con
+Dato \\(\mathbf{S}^{(it-1)}\\), ogni riga di \\(\mathbf{S}^\star\\) viene generata indipendentemente dalle altre in accordo con
 
 $$
 \operatorname{Pr}\left(S_{n}^{\star}=j \mid S_{n}^{(it-1)}\right)=\frac{\exp \left(\beta \mathbb{I}\left(S_{n}^{(it-1)}=j\right)\right)}{\sum_{g=1}^{G} \exp \left(\beta \mathbb{I}\left(S_{n}^{(it-1)}=g\right)\right)}
@@ -150,11 +137,11 @@ $$
 
 Algoritmo MCMC per l'inferenza in modelli che involvono *high-dimensional discrete state spaces*
 
-Viene introdotta una variabile ausiliaria $\mathbf{U}$ per la costruzione di uno spazio di esplorazione che viene troncato adattivamente
+Viene introdotta una variabile ausiliaria \\(\mathbf{U}\\) per la costruzione di uno spazio di esplorazione che viene troncato adattivamente
 
 La particolare costruzione permette la derivazione di un Gibbs sampler
 
-Richiede la definizione di una palla centrata in  $\mathbf{S}$ e di raggio $m$ (la *Hamming ball* di raggio $m$), per cui $m$ può essere inteso come un parametro di *tuning* che può influenzare velocità ed efficacia dell'algoritmo
+Richiede la definizione di una palla centrata in  \\(\mathbf{S}\\) e di raggio \\(m\\) (la *Hamming ball* di raggio \\(m\\)), per cui \\(m\\) può essere inteso come un parametro di *tuning* che può influenzare velocità ed efficacia dell'algoritmo
 
 
 ## Costruzione
@@ -166,17 +153,21 @@ dove
 
 $$ p(\mathbf{U} \mid \mathbf{S}) = \dfrac{1}{Z_m} \mathbb{I}(\mathbf{U} \in \mathcal{H}_m(\mathbf{S}))$$ 
 
-è una distribuzione uniforme su $\mathcal{H}_m(\mathbf{S})$,
+è una distribuzione uniforme su \\(\mathcal{H}_m(\mathbf{S})\\),
 
-$$\mathcal{H}_{m}(\mathbf{X})=\left\lbrace\mathbf{U}: d\left(\mathbf{u}_{n}, \mathbf{x}_{n}\right) \leq m, n=1, \ldots, N\right\rbrace $$ 
+$$
+\mathcal{H}_m(\mathbf{X}) = \left\lbrace\mathbf{U}\colon d\left(\mathbf{u}_n, \mathbf{x}_n\right) \leq m,\; n=1,\dots,N\right\rbrace
+$$
 
-è la *Hamming ball* di raggio $m$ e $d\left(\mathbf{u}_{n}, \mathbf{s}_{n}\right)$ è la distanza di Hamming tra i blocchi $\mathbf{u}_n$ e $\mathbf{s}_n$ di $\mathbf{U}$ e $\mathbf{S}$, rispettivamente 
+è la *Hamming ball* di raggio \\(m\\) e \\( d\left(\mathbf{u}_n, \mathbf{s}_n\right)\\) è la distanza di Hamming tra i blocchi \\(\mathbf{u}_n\\) e \\(\mathbf{s}_n\\) di \\(\mathbf{U}\\) e \\(\mathbf{S}\\), rispettivamente 
+
+
 
 ## Gibbs sampler 
 
 Data la particolare costruzione dello *state space*, l'algoritmo itera i seguenti passi
 
-1. $\mathbf{U} \leftarrow p(\mathbf{U} \mid \mathbf{S})$
+1. \\(\mathbf{U} \leftarrow p(\mathbf{U} \mid \mathbf{S})\\)
 2. $\mathbf{S} \leftarrow p( \mathbf{S} \mid \theta, \mathbf{U}, y_{1:N})$
 3. $\theta \leftarrow p(\theta \mid \mathbf{S}, y_{1:N})$
 
