@@ -31,9 +31,9 @@ When the cloning operation is done, move in the folder with the repository and c
 ```
 $ git remote add upstream https://github.com/mascaretti/paperitivo.git
 $ git remote -v
-> origin 	https://github.com/<yourname>/paperitivo.git (fetch)
+> origin	https://github.com/<yourname>/paperitivo.git (fetch)
 > origin	https://github.com/<yourname>/paperitivo.git (push)
-> upstream  https://github.com/mascaretti/paperitivo.git (fetch)
+> upstream	https://github.com/mascaretti/paperitivo.git (fetch)
 > upstream	https://github.com/mascaretti/paperitivo.git (push)
 ```
 
