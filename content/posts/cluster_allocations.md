@@ -6,7 +6,7 @@ date: "2020-11-30"
 tags: ["Mixture Models", "Cluster Allocations"]
 showtoc: true
 katex: true
-weight: 2
+markup: "mmark"
 ---
 
 
