@@ -12,6 +12,7 @@ markup: mmark
 
 ## Mixture models
 Si consideri la seguente specificazione gerarchica di un modello mistura
+
 $$ Y_{n} \mid S_{n}=g, \theta_{g} \sim f\left(\cdot \mid \theta_{g} \right), \quad n =1,\ldots, N $$
 
 $$ S_{n} \mid \pi_G \sim \text{Mult}_G\left(1, \pi_G \right), \quad 
@@ -29,7 +30,9 @@ Un approccio elementare al problema prevede l'utilizzo di algoritmi MCMC (Gibbs 
 Generalmente, questi algoritmi simulano iterativamente dalle full conditional dei parametri
 
 Le allocazioni vengono aggiornate una alla volta condizionatamente al resto
+
 $$S_n \mid S_{1:(n-1), (n+1):N}, \theta_{1:G},\pi, {y}_{1:N}$$ 
+
 in accordo con la loro distribuzione full conditional
 
 Con $N$ grande, calcolare le distribuzioni full conditional può essere oneroso e portare a catene mal mixate
@@ -50,7 +53,8 @@ In high-dimensional settings la catena si incastra e non cambia le allocazioni
 
 ### Risolviamoli: meglio insieme!
 
-Possiamo considerare le allocazioni 
+Possiamo considerare le allocazioni
+
 $$S_{1:N} = (S_1, S_2, \ldots, S_N) \in \{1, 2, \ldots, G\}^N$$
 
 come un unico parametro o, alternativamente, la matrice di selezione
