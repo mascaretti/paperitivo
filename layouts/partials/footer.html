@@ -1,8 +1,4 @@
 <footer class="footer">
-    {{ if or .Params.math .Site.Params.math }}
-        {{ partial "katex.html" . }}
-      {{ end }}
-
     {{- if .Site.Copyright }}
     <span>{{ .Site.Copyright | markdownify }}</span>
     {{- else }}
@@ -13,6 +9,11 @@
     <span>&middot;</span>
     <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
 </footer>
+
+    {{ if or .Params.math .Site.Params.math }}
+        {{ partial "katex.html" . }}
+      {{ end }}
+      
 <a href="#top" aria-label="go to top" title="Go to Top" accesskey="g">
     <button class="top-link" id="top-link" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6">
