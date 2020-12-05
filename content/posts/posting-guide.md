@@ -49,15 +49,17 @@ $ git commit -m "a short message that identifies your commit"
 ```
 As a message for the commit, you can write some info on the post, for instance "added post on the paperinik in XX/XX/2020" or something similar. You can later modify your file and commit it again following the same procedure.
 
-If you need to add some images, you can place those in the folder `assets/images/`, possibly creating a subfolder for your post in order to keep stuff organized. You then need to commit also the images: it should be enough to replace the previous `git add` with
+If you need to add some images, you can place those in the folder `static/images/`, possibly creating a subfolder for your post in order to keep stuff organized. You then need to commit also the images: it should be enough to replace the previous `git add` with
 ```
 $ git add content/posts/<yourpost>.md assets/images/<yourimagefolder>/
 ```
 and committing using the same command as before.
 
-To write math, you can use most of standard LaTeX stuff: to introduct a display equation you should leave a blank line before and after the `$$` symbol.
+To write math, you can use most of standard LaTeX stuff: to introduct a display equation you should leave a blank line before and after it, while using the `$$` symbol as a delimiter:
 
-To add an inline equation, use `\\(` and `\\)` as delimiters, as in \\(x^2\\)
+$$ x^2 $$
+
+To add an inline equation, use `\\(` and `\\)` as delimiters, as in \\(x^2\\).
 
 
 ## Syncing the fork with upstream
