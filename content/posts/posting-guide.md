@@ -51,7 +51,7 @@ As a message for the commit, you can write some info on the post, for instance "
 
 If you need to add some images, you can place those in the folder `static/images/`, possibly creating a subfolder for your post in order to keep stuff organized. You then need to commit also the images: it should be enough to replace the previous `git add` with
 ```
-$ git add content/posts/<yourpost>.md assets/images/<yourimagefolder>/
+$ git add content/posts/<yourpost>.md static/images/<yourimagefolder>/
 ```
 and committing using the same command as before.
 
@@ -93,6 +93,3 @@ A "Compare Change" page will open, from where you can check what you are trying 
 Review the changes to avoid any error and finally press "Create pull request" and finally complete the form adding a brief explanation (if needed).
 
 Almost all this topics are described in wide detail in the GitHub Docs, for instance [How to configure a remote for a fork](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork), [How to sync a fork](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/syncing-a-fork) and [How to create a pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
-
-
-
