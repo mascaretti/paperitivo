@@ -1,14 +1,12 @@
 ---
 author: "Jacopo Schiavon"
-title: "A short guide for blog posters"
+title: "How to be a blog posters"
 date: "2020-11-30"
-description: "Short tutorial on how to create blog posts for paperinik."
+subtitle: "Short tutorial on how to create blog posts for paperinik."
 tags: ["guide"]
-categories: ["guide"]
-series: ["Guide"]
 ShowToc: true
 TocOpen: true
-math: true
+katex: true
 weight: 2
 ---
 
@@ -59,7 +57,7 @@ and committing using the same command as before.
 
 To write math, you can use most of standard LaTeX stuff: to introduct a display equation you should leave a blank line before and after the `$$` symbol.
 
-To add an inline equation, use `$` and `$` as delimiters, as in $x^2$
+To add an inline equation, use `\\(` and `\\)` as delimiters, as in \\(x^2\\)
 
 
 ## Syncing the fork with upstream

@@ -46,7 +46,6 @@ languages:
 params:
   env: production
   description: "An informal meeting of young statisticians from the Department of Statistics at the University of Padova"
-  author: Theme PaperMod
   author: ["Andrea Mascaretti"] # multiple authors
   ShowReadingTime: false
   defaultTheme: auto
