@@ -1,6 +1,6 @@
 <footer class="footer">
     {{ if or .Params.math .Site.Params.math }}
-        {{ partial "math.html" . }}
+        {{ partial "katex.html" . }}
       {{ end }}
 
     {{- if .Site.Copyright }}

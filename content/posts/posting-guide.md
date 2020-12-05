@@ -6,7 +6,8 @@ subtitle: "Short tutorial on how to create blog posts for paperinik."
 tags: ["guide"]
 ShowToc: true
 TocOpen: true
-katex: true
+markup: mmark
+math: true
 weight: 2
 ---
 

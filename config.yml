@@ -1,5 +1,5 @@
 baseURL: "https://paperitivo.netlify.app/"
-title: Paperitivo
+title: "Paperinik"
 paginate: 8
 theme: hugo-PaperMod
 enableInlineShortcodes: true
